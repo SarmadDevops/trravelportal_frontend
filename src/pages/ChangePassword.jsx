@@ -281,15 +281,18 @@ const ChangePasswordPage = () => {
               background: "#f8fafc",
               borderRadius: "15px",
               minHeight: "400px",
+              padding: "20px",
             }}
           >
             <img
               src="/travelillustration.png"
               alt="Travel Illustration"
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
+                maxWidth: "100%",
+                maxHeight: "100%",
+                width: "auto",
+                height: "auto",
+                objectFit: "contain",
                 borderRadius: "15px",
               }}
             />
