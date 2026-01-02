@@ -1,17 +1,17 @@
 import React from "react";
 import { Form, Input, Button, Typography, Row, Col } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import { LockOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 const { Title, Text, Link } = Typography;
 
-const LoginPage = () => {
+const ChangePasswordPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    console.log("Login values:", values);
-    // Add your login logic here
+    console.log("Change Password values:", values);
+    // Add your password change logic here
   };
 
   return (
@@ -35,7 +35,7 @@ const LoginPage = () => {
           boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
         }}
       >
-        {/* Left Side - Login Form */}
+        {/* Left Side - Change Password Form */}
         <Col
           xs={24}
           md={12}
@@ -57,7 +57,7 @@ const LoginPage = () => {
                 fontWeight: "700",
               }}
             >
-              Welcome Back
+              Change Password
             </Title>
 
             <Text
@@ -68,12 +68,12 @@ const LoginPage = () => {
                 marginBottom: "40px",
               }}
             >
-              Sign in to your account to continue
+              Update your password to keep your account secure
             </Text>
 
             <Form
               form={form}
-              name="login"
+              name="changePassword"
               onFinish={onFinish}
               layout="vertical"
               requiredMark={false}
@@ -87,18 +87,20 @@ const LoginPage = () => {
                       fontWeight: "500",
                     }}
                   >
-                    Email
+                    Old Password
                   </span>
                 }
-                name="email"
+                name="oldPassword"
                 rules={[
-                  { required: true, message: "Please enter your email!" },
-                  { type: "email", message: "Please enter a valid email!" },
+                  {
+                    required: true,
+                    message: "Please enter your old password!",
+                  },
                 ]}
               >
-                <Input
-                  prefix={<MailOutlined style={{ color: "#94a3b8" }} />}
-                  placeholder="Enter your email"
+                <Input.Password
+                  prefix={<LockOutlined style={{ color: "#94a3b8" }} />}
+                  placeholder="Enter your old password"
                   size="large"
                   style={{
                     borderRadius: "10px",
@@ -121,18 +123,69 @@ const LoginPage = () => {
                       fontWeight: "500",
                     }}
                   >
-                    Password
+                    New Password
                   </span>
                 }
-                name="password"
+                name="newPassword"
                 rules={[
-                  { required: true, message: "Please enter your password!" },
+                  {
+                    required: true,
+                    message: "Please enter your new password!",
+                  },
+                  {
+                    min: 6,
+                    message: "Password must be at least 6 characters!",
+                  },
+                ]}
+              >
+                <Input.Password
+                  prefix={<LockOutlined style={{ color: "#94a3b8" }} />}
+                  placeholder="Enter your new password"
+                  size="large"
+                  style={{
+                    borderRadius: "10px",
+                    padding: "12px 15px",
+                    fontSize: "15px",
+                    border: "2px solid rgba(255,255,255,0.3)",
+                    background: "rgba(255,255,255,0.1)",
+                    color: "white",
+                  }}
+                  className="custom-input"
+                />
+              </Form.Item>
+
+              <Form.Item
+                label={
+                  <span
+                    style={{
+                      color: "white",
+                      fontSize: "15px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Confirm Password
+                  </span>
+                }
+                name="confirmPassword"
+                dependencies={["newPassword"]}
+                rules={[
+                  { required: true, message: "Please confirm your password!" },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("newPassword") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("Passwords do not match!")
+                      );
+                    },
+                  }),
                 ]}
                 style={{ marginBottom: "30px" }}
               >
                 <Input.Password
                   prefix={<LockOutlined style={{ color: "#94a3b8" }} />}
-                  placeholder="Enter your Password"
+                  placeholder="Confirm your new password"
                   size="large"
                   style={{
                     borderRadius: "10px",
@@ -171,7 +224,7 @@ const LoginPage = () => {
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  Sign in
+                  Change Password
                 </Button>
               </Form.Item>
 
@@ -179,9 +232,9 @@ const LoginPage = () => {
                 <Text
                   style={{ color: "rgba(255,255,255,0.9)", fontSize: "15px" }}
                 >
-                  Need to update your password?{" "}
+                  Remember your password?{" "}
                   <Link
-                    onClick={() => navigate("/change-password")}
+                    onClick={() => navigate("/login")}
                     style={{
                       color: "white",
                       fontWeight: "600",
@@ -189,7 +242,7 @@ const LoginPage = () => {
                       cursor: "pointer",
                     }}
                   >
-                    Change Password
+                    Back to Login
                   </Link>
                 </Text>
               </div>
@@ -209,7 +262,7 @@ const LoginPage = () => {
         <Col
           xs={0}
           md={12}
-          className="login-illustration"
+          className="password-illustration"
           style={{
             background: "white",
             padding: "60px",
@@ -282,7 +335,7 @@ const LoginPage = () => {
         }
 
         @media (max-width: 768px) {
-          .login-illustration {
+          .password-illustration {
             display: none !important;
           }
         }
@@ -291,4 +344,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ChangePasswordPage;
