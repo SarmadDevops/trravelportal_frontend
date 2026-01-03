@@ -1,0 +1,123 @@
+/* Page Wrapper */
+.login-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Container */
+.login-container {
+  max-width: 1200px;
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Left */
+.login-left {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  padding: 60px 50px;
+  display: flex;
+  align-items: center;
+}
+
+/* Form */
+.login-form-wrapper {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.login-title {
+  color: white !important;
+  font-size: 42px !important;
+  font-weight: 700 !important;
+}
+
+.login-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  margin-bottom: 40px;
+}
+
+.login-label {
+  color: white;
+  font-weight: 500;
+}
+
+.login-input {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.login-input input {
+  background: transparent;
+  color: white;
+}
+
+.login-input input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-button {
+  height: 50px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Footer */
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-footer a {
+  color: white;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.login-copy {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Right */
+.login-right {
+  padding: 60px;
+  background: #f8fafc;
+}
+
+.illustration-box {
+  background: #f8fafc;
+  border-radius: 15px;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illustration-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-right {
+    display: none;
+  }
+}
